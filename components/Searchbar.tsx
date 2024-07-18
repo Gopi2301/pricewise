@@ -1,4 +1,5 @@
 "use client"
+import { scrapeandStoreProduct } from "@/lib/actions";
 import { parseUrl } from "next/dist/shared/lib/router/utils/parse-url"
 import { FormEvent, useState } from "react"
 
@@ -20,7 +21,7 @@ const SearchBar = () => {
     }
     return false
   };  
-  const handleSubmit=(event: FormEvent<HTMLFormElement>)=>{
+  const handleSubmit=async(event: FormEvent<HTMLFormElement>)=>{
     event.preventDefault();
     const isValidLink= isValidAmazonProductURL(searchPrompt)
     if(!isValidLink)return alert("Please provide valid amazon product link!!")
@@ -28,6 +29,7 @@ const SearchBar = () => {
       setIsLoading(true)
 
       // Let's the Web scraping Begins here!!
+      const product = await scrapeandStoreProduct(searchPrompt);
     } catch (error) {
       
     }finally{
