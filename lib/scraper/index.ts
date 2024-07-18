@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as cheerio from "cheerio";
+import { extractPrice } from "../utils";
 export async function scrapeAmazonProduct(url:string) {
     if(!url) return;
     const username = String(process.env.BRIGHT_DATA_USERNAME)
@@ -19,8 +20,15 @@ export async function scrapeAmazonProduct(url:string) {
     try{
         // Fetch the Product page
         const response = await axios.get(url,options)
-        console.log(response.data)
-        console.log("success")
+        const $ = cheerio.load(response.data) 
+        // Extract the Product Title
+        const title = $('#productTitle').text().trim();
+        const currentPrice = extractPrice(
+            $('.a-price .aok-align-center .reinventPricePriceToPayMargin .priceToPay'),
+            $('.aok-offscreen')
+        )
+        console.log({title, currentPrice});
+        
     }catch(error:any){
         throw new Error(`Failed to scrape product:${error.message}`)
     }
