@@ -1,9 +1,13 @@
 import React from 'react'
-
-const ProductDetails = () => {
+import '../../../public/assets/icons/user.svg'
+import { connectToDB } from '@/lib/mongoose'
+type Props={
+    params:{id:string}
+}
+const ProductDetails =  async({params:{id}}:Props) => {
   return (
     <div>
-      ProductDetails
+      {id}
     </div>
   )
 }

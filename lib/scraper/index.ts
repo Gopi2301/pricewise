@@ -25,7 +25,7 @@ export async function scrapeAmazonProduct(url:string) {
         // Extract the Product Title
         const title = $('#productTitle').text().trim();
         const currentPrice = extractPrice(
-            $('.priceToPay span.a-price-whole')
+            $('.a-price.aok-align-center.reinventPricePriceToPayMargin.priceToPay span.a-price-whole')
         )
         const originalPrice = extractPrice(
             $('.a-price.a-text-price span.a-offscreen') 
@@ -44,6 +44,7 @@ export async function scrapeAmazonProduct(url:string) {
         const description =extractDescription($);
         // Construct data object with scraped information
         const data = {
+            title,
             url,
             currency: currency || '₹',
             image:imageUrls[0],
