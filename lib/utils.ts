@@ -20,7 +20,7 @@ export function extractPrice(...elements: any) {
       let firstPrice; 
 
       if (cleanPrice) {
-        firstPrice = cleanPrice.match(/\d+(\.\d+)?/)?.[0];
+        firstPrice = cleanPrice.match(/\d+\.\d{2}/)?.[0];
       } 
 
       return firstPrice || cleanPrice;
