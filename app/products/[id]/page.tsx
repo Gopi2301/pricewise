@@ -68,7 +68,7 @@ const ProductDetails =  async({params:{id}}:Props) => {
               <PriceInfoCard title="Lowest Price" iconSrc="/assets/icons/arrow-down.svg" value={`${product.currency} ${formatNumber(product.currentPrice)}`} />
             </div>
           </div>
-          <Modal/>
+          <Modal productId={id}/>
         </div>
       </div>
       <div className="flex flex-col gap-16 ">
