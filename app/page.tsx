@@ -2,6 +2,7 @@ import HeroCarousel from '@/components/HeroCarousel'
 import ProductCard from '@/components/ProductCard'
 import SearchBar from '@/components/Searchbar'
 import { getAllProducts } from '@/lib/actions'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import Image from 'next/image'
 import React from 'react'
 
@@ -9,6 +10,7 @@ const Home = async () => {
   const allProducts = await getAllProducts();
   return (
     <>
+    <SpeedInsights/>
     <section className='px-6 md:px-20 py-24 border-2'>
     <div className='flex max-xl:flex-col gap-16'>
       <div className='flex flex-col justify-center'>
